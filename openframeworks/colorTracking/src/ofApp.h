@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "ofxCv.h"
+#include "ofxNetwork.h"
 
 class ofApp : public ofBaseApp{
 
@@ -22,6 +23,7 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
         ofColor colorSearch;
+        ofxUDPManager udpConnection;
     
     ofVideoGrabber camera;
     ofxCv::ContourFinder contour;
