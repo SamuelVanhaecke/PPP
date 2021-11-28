@@ -7,9 +7,10 @@ void ofApp::setup(){
     
     contour.setMinAreaRadius(10);
     contour.setMaxAreaRadius(100);
-    contour.setTargetColor(colorSearch);
+//    contour.setTargetColor(colorSearch);
+    contour.setTargetColor(colorSearch, ofxCv::TRACK_COLOR_HS);
     
-    colorSearch = {217, 125, 58, 255};
+    colorSearch = {253, 137, 66, 255};
     
     // UDP communication
     ofSetVerticalSync(true);
@@ -33,13 +34,13 @@ void ofApp::update(){
         std::cout << "value: " << contour.getAverage(0) << endl;
         string message = ofToString(contour.getAverage(0));
         udpConnection.Send(message.c_str(),message.length());
-//        std::cout << "value: " << color << endl;
+//      std::cout << "value: " << color << endl;
     }
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    //color = (255);
+    color = (255);
     camera.draw(0, 0);
     contour.draw();
     
