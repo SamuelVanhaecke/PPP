@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 using System.Text;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
+using System.Text.RegularExpressions;
 
 public class udpReceive : MonoBehaviour
 {
@@ -18,10 +20,15 @@ public class udpReceive : MonoBehaviour
     // public
     // public string IP = "127.0.0.1"; default local
     public int port; // define > init
+
+    public Text scoring;
  
     // infos
     public string lastReceivedUDPPacket="";
-    public string allReceivedUDPPackets=""; // clean up this from time to time!
+    //public string allReceivedUDPPackets=""; // clean up this from time to time!
+    
+    public int xValue;
+    public int yValue;
 
     // start from shell
     private static void Main()
@@ -52,7 +59,7 @@ public class udpReceive : MonoBehaviour
         GUI.Box(rectObj,"# UDPReceive\n127.0.0.1 "+port+" #\n"
                     + "shell> nc -u 127.0.0.1 : "+port+" \n"
                     + "\nLast Packet: \n"+ lastReceivedUDPPacket
-                    + "\n\nAll Messages: \n"+allReceivedUDPPackets
+                    + "\n\nAll Messages:\n"//+allReceivedUDPPackets
                 ,style);
     }
 
@@ -106,7 +113,7 @@ public class udpReceive : MonoBehaviour
                 lastReceivedUDPPacket=text;
                
                 // ....
-                allReceivedUDPPackets=allReceivedUDPPackets+text;
+                //allReceivedUDPPackets=allReceivedUDPPackets+text;
                
             }
             catch (Exception err)
@@ -120,13 +127,25 @@ public class udpReceive : MonoBehaviour
     // cleans up the rest
     public string getLatestUDPPacket()
     {
-        allReceivedUDPPackets="";
+        //allReceivedUDPPackets="";
         return lastReceivedUDPPacket;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        var result = lastReceivedUDPPacket.Split(',');
+
+        int xValue = Int32.Parse(Regex.Match(result[0], @"\d+").Value);
+        int yValue = Int32.Parse(Regex.Match(result[0], @"\d+").Value);
+
+        // int.TryParse(new String(result[0].Where(Char.IsDigit).ToArray()), out int xValue);
+        // int.TryParse(new String(result[1].Where(Char.IsDigit).ToArray()), out int yValue);
+
+        if(xValue < 320 && xValue > 300){
+            scoring.text = "Score";
+        } else {
+            scoring.text = "No score";
+        }
     }
 }

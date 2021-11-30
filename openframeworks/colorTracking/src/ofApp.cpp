@@ -3,7 +3,7 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     // color tracking
-    camera.setup(1280, 720);
+    camera.setup(964, 440);
     
     contour.setMinAreaRadius(10);
     contour.setMaxAreaRadius(100);
@@ -40,13 +40,13 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    color = (255);
+//    color = (255);
     camera.draw(0, 0);
     contour.draw();
     
-    ofSetColor(color);
-    ofFill();
-    ofDrawRectangle(camera.getWidth(), 0, 128, 128);
+//    ofSetColor(color);
+//    ofFill();
+//    ofDrawRectangle(camera.getWidth(), 0, 128, 128);
     //std::cout << "value: " << cv::Point2f() << endl;
     
 }
