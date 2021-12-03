@@ -24,6 +24,7 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
         ofColor colorSearch;
         ofxUDPManager udpConnection;
+        bool averagedefined;
     
     ofVideoGrabber camera;
     ofxCv::ContourFinder contour;
