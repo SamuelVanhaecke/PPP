@@ -3,6 +3,7 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     // color tracking
+    camera.setDeviceID(1);
     camera.setup(964, 440);
     
     contour.setMinAreaRadius(10);
