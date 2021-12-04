@@ -11,7 +11,7 @@ void ofApp::setup(){
 //    contour.setTargetColor(colorSearch);
     contour.setTargetColor(colorSearch, ofxCv::TRACK_COLOR_HS);
     
-    colorSearch = {255, 255, 255, 255};
+    colorSearch = {255, 255, 255, 0};
     contour.setThreshold(0);
     
     // UDP communication

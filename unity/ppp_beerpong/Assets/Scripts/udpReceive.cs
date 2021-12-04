@@ -136,15 +136,15 @@ public class udpReceive : MonoBehaviour
     {
         var result = lastReceivedUDPPacket.Split(',');
 
-        int xValue = Int32.Parse(Regex.Match(result[0], @"\d+").Value);
-        int yValue = Int32.Parse(Regex.Match(result[1], @"\d+").Value)-200;
+        xValue = Int32.Parse(Regex.Match(result[0], @"\d+").Value)-640;
+        yValue = Int32.Parse(Regex.Match(result[1], @"\d+").Value)-360;
 
-        if (yValue > 320 || yValue < 0) {
+        if (yValue > 160 || yValue < -160) {
             xValue = 0;
             yValue = 0;
         }
 
-        print(">> [" + xValue + "," + yValue + "]");
+        //print(">> [" + xValue + "," + yValue + "]");
 
 
 
