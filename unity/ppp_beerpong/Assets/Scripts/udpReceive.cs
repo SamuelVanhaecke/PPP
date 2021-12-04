@@ -107,7 +107,7 @@ public class udpReceive : MonoBehaviour
                 string text = Encoding.UTF8.GetString(data);
  
                 // Den abgerufenen Text anzeigen.
-                print(">> " + text);
+                //print(">> " + text);
                
                 // latest UDPpacket
                 lastReceivedUDPPacket=text;
@@ -137,15 +137,21 @@ public class udpReceive : MonoBehaviour
         var result = lastReceivedUDPPacket.Split(',');
 
         int xValue = Int32.Parse(Regex.Match(result[0], @"\d+").Value);
-        int yValue = Int32.Parse(Regex.Match(result[0], @"\d+").Value);
+        int yValue = Int32.Parse(Regex.Match(result[1], @"\d+").Value)-200;
 
-        // int.TryParse(new String(result[0].Where(Char.IsDigit).ToArray()), out int xValue);
-        // int.TryParse(new String(result[1].Where(Char.IsDigit).ToArray()), out int yValue);
-
-        if(xValue < 320 && xValue > 300){
-            scoring.text = "Score";
-        } else {
-            scoring.text = "No score";
+        if (yValue > 320 || yValue < 0) {
+            xValue = 0;
+            yValue = 0;
         }
+
+        print(">> [" + xValue + "," + yValue + "]");
+
+
+
+        // if(xValue < 320 && xValue > 300){
+        //     scoring.text = "Score";
+        // } else {
+        //     scoring.text = "No score";
+        // }
     }
 }

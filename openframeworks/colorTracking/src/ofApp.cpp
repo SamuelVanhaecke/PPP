@@ -4,7 +4,7 @@
 void ofApp::setup(){
     // color tracking
     camera.setDeviceID(1);
-    camera.setup(1280, 360);
+    camera.setup(1280, 720);
     
     contour.setMinAreaRadius(10);
     contour.setMaxAreaRadius(100);
@@ -27,9 +27,6 @@ void ofApp::setup(){
     std::cout << "value: " << camera.getWidth() << endl;
 
     udpConnection.Setup(settings);
-    
-    //averagedefined = false;
-    
 }
 
 //--------------------------------------------------------------
@@ -39,13 +36,12 @@ void ofApp::update(){
         contour.setTargetColor(colorSearch);
         contour.setThreshold(40);
         contour.findContours(camera);
-//        std::cout << "value: " << contour.getAverage(0) << endl;
+        std::cout << "value: " << contour.getAverage(0) << endl;
         
-        //if(averagedefined) {
-            string message = ofToString(contour.getAverage(0));
-            udpConnection.Send(message.c_str(),message.length());
-        //}
-        colorSearch = {253, 137, 66, 255};
+        string message = ofToString(contour.getAverage(0));
+        udpConnection.Send(message.c_str(),message.length());
+        
+        colorSearch = {242, 157, 101, 255};
     }
 }
 
