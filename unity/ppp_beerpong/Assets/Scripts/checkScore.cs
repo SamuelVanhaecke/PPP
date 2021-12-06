@@ -16,36 +16,43 @@ public class checkScore : MonoBehaviour
     public string[] cups2 = {"cup2.1", "cup2.2", "cup2.3", "cup2.4", "cup2.5", "cup2.6", "cup2.7", "cup2.8", "cup2.9", "cup2.10"};
     public int xValue;
     public int yValue;
+
+    int [] positionsX = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
+    public int[] positionsY;
     public bool playerTurn = true;
-    
 
     void checkIfScore() {
-        print("test1");
+        // Get coördinates of pingpongball from udpReceive script
         xValue = GameObject.Find("Canvas").GetComponent<udpReceive>().xValue;
         yValue = GameObject.Find("Canvas").GetComponent<udpReceive>().yValue;
-        // xValue = 283;
-        // yValue = 29;
-        print("test2");
         
-
-        if(xValue != -640 && yValue != -360) {
+        if(xValue != 0 && yValue != 0) {
             if (playerTurn) {
-                print("test3");
-                for(int i = 0; i < cups1.Length; i++) {
-                    string currentCup = GameObject.Find(cups1[i]).transform.position.ToString();
-                    var cupCoördinates = currentCup.Split(',');
-                    int cupX = Int32.Parse(Regex.Match(cupCoördinates[0], @"\d+").Value)-482;
-                    int cupY = Int32.Parse(Regex.Match(cupCoördinates[1], @"\d+").Value)-275;
-                    //print(cupX +", "+cupY);
-                    //print(xValue +", "+yValue);
+                for(int i = 0; i < 9; i++) {
+                    positionsX[i] = positionsX[i+1];
+                }
+                positionsX[9] = xValue;
 
-                    if(xValue < cupX+23 && xValue > cupX-23 && yValue < cupY+23 && yValue > cupY-23) {
-                        print("score");
+                if(positionsX[9] - positionsX[0] < 20) {
+                    for(int i = 0; i < cups1.Length; i++) {
+                        string currentCup = GameObject.Find(cups1[i]).transform.position.ToString();
+                        var cupCoördinates = currentCup.Split(',');
+                        int cupX = Int32.Parse(Regex.Match(cupCoördinates[0], @"\d+").Value)-482;
+                        int cupY = Int32.Parse(Regex.Match(cupCoördinates[1], @"\d+").Value)-275;
+                        //print(cupX +", "+cupY);
+                        //print(xValue +", "+yValue);
+
+                        if(xValue < cupX+23 && xValue > cupX-23 && yValue < cupY+23 && yValue > cupY-23) {
+                            print(cups1[i]);
+                        }
                     }
+                    playerTurn = false;
                 }
             } else {
-
+                print("player2");
             }
+            xValue = 0;
+            yValue = 0;
         }
 
         
@@ -53,15 +60,15 @@ public class checkScore : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        System.Timers.Timer myTimer = new System.Timers.Timer();
-        myTimer.Elapsed += new ElapsedEventHandler(DisplayTimeEvent);
-        myTimer.Interval = 1000; // 1000 ms is one second
-        myTimer.Start();
+        // System.Timers.Timer myTimer = new System.Timers.Timer();
+        // myTimer.Elapsed += new ElapsedEventHandler(DisplayTimeEvent);
+        // myTimer.Interval = 1000; // 1000 ms is one second
+        // myTimer.Start();
 
-        void DisplayTimeEvent(object source, ElapsedEventArgs e)
-        {
-            checkIfScore();
-        }
+        // void DisplayTimeEvent(object source, ElapsedEventArgs e)
+        // {
+        //     checkIfScore();
+        // }
         // Task.Factory.StartNew(() =>
         // {
         //     System.Threading.Thread.Sleep(1000);
@@ -97,7 +104,7 @@ public class checkScore : MonoBehaviour
         // if(xValue != 0 && yValue != 0) {
         //     checkIfScore();
         // }
-        //checkIfScore();
+        checkIfScore();
         //checkIfScore(xValue, yValue)
     }
 }

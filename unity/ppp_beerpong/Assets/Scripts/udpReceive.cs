@@ -136,10 +136,12 @@ public class udpReceive : MonoBehaviour
     {
         var result = lastReceivedUDPPacket.Split(',');
 
-        Console.Write("result");
+        if(result[0] != "") {
+            xValue = Int32.Parse(Regex.Match(result[0], @"\d+").Value)-640;
+            yValue = Int32.Parse(Regex.Match(result[1], @"\d+").Value)-360;
+        };
 
-        xValue = Int32.Parse(Regex.Match(result[0], @"\d+").Value)-640;
-        yValue = Int32.Parse(Regex.Match(result[1], @"\d+").Value)-360;
+        
 
         // Console.Write(xValue.ToString());
 
