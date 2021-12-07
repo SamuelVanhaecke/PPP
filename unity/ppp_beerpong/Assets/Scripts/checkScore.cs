@@ -44,12 +44,37 @@ public class checkScore : MonoBehaviour
 
                         if(xValue < cupX+23 && xValue > cupX-23 && yValue < cupY+23 && yValue > cupY-23) {
                             print(cups1[i]);
+                            print("score");
+                            playerTurn = false;
                         }
                     }
-                    playerTurn = false;
+                    // print("noScore");
+                    // playerTurn = false;
                 }
             } else {
-                print("player2");
+                for(int i = 0; i < 9; i++) {
+                    positionsX[i] = positionsX[i+1];
+                }
+                positionsX[9] = xValue;
+
+                if(positionsX[0] - positionsX[9] < 20) {
+                    for(int i = 0; i < cups2.Length; i++) {
+                        string currentCup = GameObject.Find(cups2[i]).transform.position.ToString();
+                        var cupCoördinates = currentCup.Split(',');
+                        int cupX = Int32.Parse(Regex.Match(cupCoördinates[0], @"\d+").Value)-482;
+                        int cupY = Int32.Parse(Regex.Match(cupCoördinates[1], @"\d+").Value)-275;
+                        //print(cupX +", "+cupY);
+                        //print(xValue +", "+yValue);
+
+                        if(xValue < cupX+23 && xValue > cupX-23 && yValue < cupY+23 && yValue > cupY-23) {
+                            print(cups2[i]);
+                            print("score");
+                            playerTurn = true;
+                        }
+                    }
+                    // print("noScore");
+                    // playerTurn = true;
+                }
             }
             xValue = 0;
             yValue = 0;
