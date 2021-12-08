@@ -12,6 +12,7 @@ using System.Timers;
 
 public class checkScore : MonoBehaviour
 {
+    public Animator animator;
     public string[] cups1 = {"cup1.1", "cup1.2", "cup1.3", "cup1.4", "cup1.5", "cup1.6", "cup1.7", "cup1.8", "cup1.9", "cup1.10"};
     public string[] cups2 = {"cup2.1", "cup2.2", "cup2.3", "cup2.4", "cup2.5", "cup2.6", "cup2.7", "cup2.8", "cup2.9", "cup2.10"};
     public int xValue;
@@ -43,9 +44,12 @@ public class checkScore : MonoBehaviour
                         //print(xValue +", "+yValue);
 
                         if(xValue < cupX+23 && xValue > cupX-23 && yValue < cupY+23 && yValue > cupY-23) {
+                            // animator.SetBool("animationTest", true);
                             print(cups1[i]);
                             print("score");
                             playerTurn = false;
+                            // animator["explosion"].wrapMode = WrapMode.Once;
+                            animator.Play("explosion");
                         }
                     }
                     // print("noScore");
@@ -67,9 +71,11 @@ public class checkScore : MonoBehaviour
                         //print(xValue +", "+yValue);
 
                         if(xValue < cupX+23 && xValue > cupX-23 && yValue < cupY+23 && yValue > cupY-23) {
+                            // animator.SetBool("animationTest", true);
                             print(cups2[i]);
                             print("score");
                             playerTurn = true;
+                            animator.Play("explosion");
                         }
                     }
                     // print("noScore");
