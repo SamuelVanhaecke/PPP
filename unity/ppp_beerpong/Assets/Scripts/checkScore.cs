@@ -48,7 +48,6 @@ public class checkScore : MonoBehaviour
                             print(cups1[i]);
                             print("score");
                             playerTurn = false;
-                            // animator["explosion"].wrapMode = WrapMode.Once;
                             animator.Play("explosion");
                         }
                     }
