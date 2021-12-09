@@ -2,16 +2,17 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-    // color tracking
+    // Camera setup
     camera.setDeviceID(1);
     camera.setup(1280, 720);
     
-    colorSearch = {242, 157, 101, 255};
+//    colorSearch = {242, 157, 101, 255};
     
+    // Contour finding parameters
     contour.setMinAreaRadius(10);
     contour.setMaxAreaRadius(100);
-    contour.setTargetColor(colorSearch, ofxCv::TRACK_COLOR_HS);
-    contour.setTargetColor(colorSearch);
+//    contour.setTargetColor(colorSearch, ofxCv::TRACK_COLOR_HS);
+//    contour.setTargetColor(colorSearch);
     contour.setThreshold(40);
     
     // UDP communication
@@ -22,11 +23,13 @@ void ofApp::setup(){
     ofxUDPSettings settings;
     settings.sendTo("127.0.0.1", 11999);
     settings.blocking = false;
-    
-    std::cout << "value: " << camera.getHeight() << endl;
-    std::cout << "value: " << camera.getWidth() << endl;
 
     udpConnection.Setup(settings);
+    
+    // GUI
+    gui.setup("panel");
+    gui.add(searchColor.set("color",ofColor(242, 157, 101),ofColor(0,0),ofColor(255,255)));
+    
 }
 
 //--------------------------------------------------------------
@@ -37,7 +40,7 @@ void ofApp::update(){
         contour.findContours(camera);
         
         if(contour.size()>0){
-            std::cout << "value: " << contour.getAverage(0) << endl;
+//            std::cout << "value: " << contour.getAverage(0) << endl;
             string message = ofToString(contour.getAverage(0));
             udpConnection.Send(message.c_str(),message.length());
         }
@@ -52,6 +55,9 @@ void ofApp::draw(){
 //    color = (255);
     camera.draw(0, 0);
     contour.draw();
+    gui.draw();
+    contour.setTargetColor(searchColor, ofxCv::TRACK_COLOR_HS);
+//    std::cout << "value: " << colorSearch << endl;
     
 //    ofSetColor(color);
 //    ofFill();
@@ -86,9 +92,9 @@ void ofApp::mouseDragged(int x, int y, int button){
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
 //    colorSearch = static_cast<int>(camera.getPixels().getColor(x, y));
-    //color = camera.getPixels().getColor(x, y);
-    std::cout << "value: " << camera.getPixels().getColor(x, y) << endl;
-    std::cout << "value: " << colorSearch << endl;
+//    color = camera.getPixels().getColor(x, y);
+//    std::cout << "value: " << camera.getPixels().getColor(x, y) << endl;
+//    std::cout << "value: " << colorSearch << endl;
 }
 
 //--------------------------------------------------------------

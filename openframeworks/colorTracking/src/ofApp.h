@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "ofxCv.h"
 #include "ofxNetwork.h"
+#include "ofxGui.h"
 
 class ofApp : public ofBaseApp{
 
@@ -29,5 +30,7 @@ class ofApp : public ofBaseApp{
     ofVideoGrabber camera;
     ofxCv::ContourFinder contour;
     ofColor color;
+    ofxPanel gui;
+    ofParameter<ofColor> searchColor;
 		
 };
