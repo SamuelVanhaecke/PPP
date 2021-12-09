@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO.Ports;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
@@ -8,10 +9,10 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using System.Text.RegularExpressions;
-using System.Timers;
 
 public class checkScore : MonoBehaviour
 {
+    SerialPort data_stream = new SerialPort("/dev/cu.usbmodem1422201", 9600);
     public Animator animator;
     public string[] cups1 = {"cup1.1", "cup1.2", "cup1.3", "cup1.4", "cup1.5", "cup1.6", "cup1.7", "cup1.8", "cup1.9", "cup1.10"};
     public string[] cups2 = {"cup2.1", "cup2.2", "cup2.3", "cup2.4", "cup2.5", "cup2.6", "cup2.7", "cup2.8", "cup2.9", "cup2.10"};
@@ -49,6 +50,8 @@ public class checkScore : MonoBehaviour
                             print("score");
                             playerTurn = false;
                             animator.Play("explosion");
+                            data_stream.Write("s");
+                            data_stream.Write("o");
                         }
                     }
                     // print("noScore");
@@ -75,6 +78,8 @@ public class checkScore : MonoBehaviour
                             print("score");
                             playerTurn = true;
                             animator.Play("explosion");
+                            data_stream.Write("s");
+                            data_stream.Write("o");
                         }
                     }
                     // print("noScore");
@@ -87,9 +92,27 @@ public class checkScore : MonoBehaviour
 
         
     }
+    public void OpenArduino(){
+        if(data_stream != null){
+            if(data_stream.IsOpen){
+                data_stream.Close();
+            }else {
+                data_stream.Open();
+                data_stream.ReadTimeout = 16;
+                print("Arduino connected");
+            }
+        }else {
+            if(data_stream.IsOpen){
+                print("Arduino is already connected");
+            }else{
+                print("Port == null");
+            }
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
+        OpenArduino();
         // System.Timers.Timer myTimer = new System.Timers.Timer();
         // myTimer.Elapsed += new ElapsedEventHandler(DisplayTimeEvent);
         // myTimer.Interval = 1000; // 1000 ms is one second

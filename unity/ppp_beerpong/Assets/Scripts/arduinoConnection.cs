@@ -5,16 +5,16 @@ using UnityEngine;
 
 public class arduinoConnection : MonoBehaviour
 {
-    SerialPort data_stream = new SerialPort("/dev/cu.usbmodem1412201", 9600);
+    SerialPort data_stream = new SerialPort("/dev/cu.usbmodem1422201", 9600);
     public string receivedButtonPress;
     void Start()
     {
         data_stream.Open();
-        data_stream.ReadTimeout = 1000;
+        data_stream.ReadTimeout = 16;
     }
     void Update()
     {
-        receivedButtonPress = data_stream.ReadLine();
+        // receivedButtonPress = data_stream.ReadLine();
         
         // if (Input.GetKeyDown("space")) {
         //     print("brunzyn");
