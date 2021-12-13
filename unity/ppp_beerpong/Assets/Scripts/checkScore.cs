@@ -41,31 +41,27 @@ public class checkScore : MonoBehaviour
 
                 if(positionsX[9] - positionsX[0] < 20) {
                     for(int i = 0; i < cups1.Length; i++) {
-                        string currentCup = GameObject.Find(cups1[i]).transform.position.ToString();
-                        var cupCoördinates = currentCup.Split(',');
-                        int cupX = Int32.Parse(Regex.Match(cupCoördinates[0], @"\d+").Value)-482;
-                        int cupY = Int32.Parse(Regex.Match(cupCoördinates[1], @"\d+").Value)-275;
-                        //print(cupX +", "+cupY);
-                        //print(xValue +", "+yValue);
+                        if(cups1[i]!=""){
+                            string currentCup = GameObject.Find(cups1[i]).transform.position.ToString();
+                            var cupCoördinates = currentCup.Split(',');
+                            int cupX = Int32.Parse(Regex.Match(cupCoördinates[0], @"\d+").Value)-482;
+                            int cupY = Int32.Parse(Regex.Match(cupCoördinates[1], @"\d+").Value)-275;
 
-                        if(xValue < cupX+cupRadius && xValue > cupX-cupRadius && yValue < cupY+cupRadius && yValue > cupY-cupRadius) {
-                            // animator.SetBool("animationTest", true);
-                            print(cups1[i]);
-                            playerTurn = false;
-                            // scoredIn = 10+i;
-                            animator.Play("cup1_1_explosion");
-                            // print("before remove");
-                            // foreach(string value in cups1){
-                            //     print(value);
-                            // }
-                            // cups1 = cups1.Where((source, index) => index != i).ToArray();
-                            // print("after remove");
-                            // foreach(string value in cups1){
-                            //     print(value);
-                            // }
-                            data_stream.Write("s");
-                            data_stream.Write("o");
-                            print("sent to arduino");
+                            if(xValue < cupX+cupRadius && xValue > cupX-cupRadius && yValue < cupY+cupRadius && yValue > cupY-cupRadius) {
+                                // animator.SetBool("animationTest", true);
+                                print(cups1[i]);
+                                playerTurn = false;
+                                // scoredIn = 10+i;
+                                animator.Play("cup1_1_explosion");
+
+                                // empty cup from array
+                                cups1[i] = "";
+
+                                // send score to arduino
+                                data_stream.Write("s");
+                                data_stream.Write("o");
+                                print("sent to arduino");
+                            }
                         }
                     }
                     // print("noScore");
@@ -79,23 +75,26 @@ public class checkScore : MonoBehaviour
 
                 if(positionsX[0] - positionsX[9] < 20) {
                     for(int i = 0; i < cups2.Length; i++) {
-                        string currentCup = GameObject.Find(cups2[i]).transform.position.ToString();
-                        var cupCoördinates = currentCup.Split(',');
-                        int cupX = Int32.Parse(Regex.Match(cupCoördinates[0], @"\d+").Value)-482;
-                        int cupY = Int32.Parse(Regex.Match(cupCoördinates[1], @"\d+").Value)-275;
-                        //print(cupX +", "+cupY);
-                        //print(xValue +", "+yValue);
+                        if(cups2[i]!=""){
+                            string currentCup = GameObject.Find(cups2[i]).transform.position.ToString();
+                            var cupCoördinates = currentCup.Split(',');
+                            int cupX = Int32.Parse(Regex.Match(cupCoördinates[0], @"\d+").Value)-482;
+                            int cupY = Int32.Parse(Regex.Match(cupCoördinates[1], @"\d+").Value)-275;
+                            //print(cupX +", "+cupY);
+                            //print(xValue +", "+yValue);
+                            if(xValue < cupX+cupRadius && xValue > cupX-cupRadius && yValue < cupY+cupRadius && yValue > cupY-cupRadius) {
+                                // animator.SetBool("animationTest", true);
+                                print(cups2[i]);
+                                print("score");
+                                playerTurn = true;
 
-// variabele voor 'magic numbers'
-                        if(xValue < cupX+cupRadius && xValue > cupX-cupRadius && yValue < cupY+cupRadius && yValue > cupY-cupRadius) {
-                            // animator.SetBool("animationTest", true);
-                            print(cups2[i]);
-                            print("score");
-                            playerTurn = true;
-                            // animator.Play("cups2_"+i+"_explosion");
-                            data_stream.Write("s");
-                            data_stream.Write("o");
+                                cups2[i] = "";
+                                
+                                data_stream.Write("s");
+                                data_stream.Write("o");
+                            }
                         }
+                        
                     }
                     // print("noScore");
                     // playerTurn = true;
