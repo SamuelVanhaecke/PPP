@@ -19,6 +19,8 @@ public class checkScore : MonoBehaviour
     public int xValue;
     public int yValue;
 
+    private int cupRadius = 23;
+
     public int scoredIn;
 
     int [] positionsX = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
@@ -46,21 +48,21 @@ public class checkScore : MonoBehaviour
                         //print(cupX +", "+cupY);
                         //print(xValue +", "+yValue);
 
-                        if(xValue < cupX+23 && xValue > cupX-23 && yValue < cupY+23 && yValue > cupY-23) {
+                        if(xValue < cupX+cupRadius && xValue > cupX-cupRadius && yValue < cupY+cupRadius && yValue > cupY-cupRadius) {
                             // animator.SetBool("animationTest", true);
                             print(cups1[i]);
                             playerTurn = false;
                             // scoredIn = 10+i;
                             animator.Play("cup1_1_explosion");
-                            print("before remove");
-                            foreach(string value in cups1){
-                                print(value);
-                            }
-                            cups1 = cups1.Where((source, index) => index != i).ToArray();
-                            print("after remove");
-                            foreach(string value in cups1){
-                                print(value);
-                            }
+                            // print("before remove");
+                            // foreach(string value in cups1){
+                            //     print(value);
+                            // }
+                            // cups1 = cups1.Where((source, index) => index != i).ToArray();
+                            // print("after remove");
+                            // foreach(string value in cups1){
+                            //     print(value);
+                            // }
                             data_stream.Write("s");
                             data_stream.Write("o");
                             print("sent to arduino");
@@ -85,7 +87,7 @@ public class checkScore : MonoBehaviour
                         //print(xValue +", "+yValue);
 
 // variabele voor 'magic numbers'
-                        if(xValue < cupX+23 && xValue > cupX-23 && yValue < cupY+23 && yValue > cupY-23) {
+                        if(xValue < cupX+cupRadius && xValue > cupX-cupRadius && yValue < cupY+cupRadius && yValue > cupY-cupRadius) {
                             // animator.SetBool("animationTest", true);
                             print(cups2[i]);
                             print("score");
