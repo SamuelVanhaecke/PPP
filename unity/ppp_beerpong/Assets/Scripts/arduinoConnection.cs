@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class arduinoConnection : MonoBehaviour
 {
-    SerialPort data_stream = new SerialPort("/dev/cu.usbmodem1422201", 9600);
+    SerialPort data_stream = new SerialPort("/dev/cu.usbmodemHIDPC1", 9600);
     public string receivedButtonPress;
     void Start()
     {

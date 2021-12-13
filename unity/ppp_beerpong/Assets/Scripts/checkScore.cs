@@ -12,7 +12,7 @@ using System.Text.RegularExpressions;
 
 public class checkScore : MonoBehaviour
 {
-    SerialPort data_stream = new SerialPort("/dev/cu.usbmodem1422201", 9600);
+    SerialPort data_stream = new SerialPort("/dev/cu.usbmodemHIDPC1", 9600);
     public Animator animator;
     public string[] cups1 = {"cup1.1", "cup1.2", "cup1.3", "cup1.4", "cup1.5", "cup1.6", "cup1.7", "cup1.8", "cup1.9", "cup1.10"};
     public string[] cups2 = {"cup2.1", "cup2.2", "cup2.3", "cup2.4", "cup2.5", "cup2.6", "cup2.7", "cup2.8", "cup2.9", "cup2.10"};
@@ -47,11 +47,11 @@ public class checkScore : MonoBehaviour
                         if(xValue < cupX+23 && xValue > cupX-23 && yValue < cupY+23 && yValue > cupY-23) {
                             // animator.SetBool("animationTest", true);
                             print(cups1[i]);
-                            print("score");
                             playerTurn = false;
-                            animator.Play("explosion");
+                            animator.Play("cups1_"+i+"_explosion");
                             data_stream.Write("s");
                             data_stream.Write("o");
+                            print("sent to arduino");
                         }
                     }
                     // print("noScore");
@@ -72,12 +72,13 @@ public class checkScore : MonoBehaviour
                         //print(cupX +", "+cupY);
                         //print(xValue +", "+yValue);
 
+// variabele voor 'magic numbers'
                         if(xValue < cupX+23 && xValue > cupX-23 && yValue < cupY+23 && yValue > cupY-23) {
                             // animator.SetBool("animationTest", true);
                             print(cups2[i]);
                             print("score");
                             playerTurn = true;
-                            animator.Play("explosion");
+                            animator.Play("cups2_"+i+"_explosion");
                             data_stream.Write("s");
                             data_stream.Write("o");
                         }
@@ -109,10 +110,15 @@ public class checkScore : MonoBehaviour
             }
         }
     }
+
+    public void positionCups(){
+        animator.Play("cup1_1");
+    }
     // Start is called before the first frame update
     void Start()
     {
         OpenArduino();
+        data_stream.Write("o");
         // System.Timers.Timer myTimer = new System.Timers.Timer();
         // myTimer.Elapsed += new ElapsedEventHandler(DisplayTimeEvent);
         // myTimer.Interval = 1000; // 1000 ms is one second
