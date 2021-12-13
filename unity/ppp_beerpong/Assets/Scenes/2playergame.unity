@@ -576,7 +576,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebf955648b5fa400784f7e27bfd9702d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 377054502}
+  animator: {fileID: 1213472316}
   cups1:
   - cup1.1
   - cup1.2
@@ -601,6 +601,7 @@ MonoBehaviour:
   - cup2.10
   xValue: 0
   yValue: 0
+  scoredIn: 0
   positionsY: 
   playerTurn: 1
 --- !u!114 &411844770

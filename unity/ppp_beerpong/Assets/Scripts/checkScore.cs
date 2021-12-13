@@ -19,6 +19,8 @@ public class checkScore : MonoBehaviour
     public int xValue;
     public int yValue;
 
+    public int scoredIn;
+
     int [] positionsX = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
     public int[] positionsY;
     public bool playerTurn = true;
@@ -48,7 +50,17 @@ public class checkScore : MonoBehaviour
                             // animator.SetBool("animationTest", true);
                             print(cups1[i]);
                             playerTurn = false;
-                            animator.Play("cups1_"+i+"_explosion");
+                            // scoredIn = 10+i;
+                            animator.Play("cup1_1_explosion");
+                            print("before remove");
+                            foreach(string value in cups1){
+                                print(value);
+                            }
+                            cups1 = cups1.Where((source, index) => index != i).ToArray();
+                            print("after remove");
+                            foreach(string value in cups1){
+                                print(value);
+                            }
                             data_stream.Write("s");
                             data_stream.Write("o");
                             print("sent to arduino");
@@ -78,7 +90,7 @@ public class checkScore : MonoBehaviour
                             print(cups2[i]);
                             print("score");
                             playerTurn = true;
-                            animator.Play("cups2_"+i+"_explosion");
+                            // animator.Play("cups2_"+i+"_explosion");
                             data_stream.Write("s");
                             data_stream.Write("o");
                         }
