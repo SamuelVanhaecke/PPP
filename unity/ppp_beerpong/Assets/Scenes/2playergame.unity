@@ -601,7 +601,6 @@ MonoBehaviour:
   - cup2.10
   xValue: 0
   yValue: 0
-  scoredIn: 0
   positionsY: 
   playerTurn: 1
 --- !u!114 &411844770
@@ -719,7 +718,7 @@ Animator:
   m_GameObject: {fileID: 425160561}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2178ffdac524f482886d916269825e3c, type: 2}
+  m_Controller: {fileID: 9100000, guid: be75f8469ee844d798bee601d2459648, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

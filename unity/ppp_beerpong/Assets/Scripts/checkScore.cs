@@ -21,8 +21,6 @@ public class checkScore : MonoBehaviour
 
     private int cupRadius = 23;
 
-    public int scoredIn;
-
     int [] positionsX = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
     public int[] positionsY;
     public bool playerTurn = true;
@@ -42,30 +40,37 @@ public class checkScore : MonoBehaviour
                 if(positionsX[9] - positionsX[0] < 20) {
                     for(int i = 0; i < cups1.Length; i++) {
                         if(cups1[i]!=""){
+                            //print("checking score");
                             string currentCup = GameObject.Find(cups1[i]).transform.position.ToString();
                             var cupCoördinates = currentCup.Split(',');
                             int cupX = Int32.Parse(Regex.Match(cupCoördinates[0], @"\d+").Value)-482;
                             int cupY = Int32.Parse(Regex.Match(cupCoördinates[1], @"\d+").Value)-275;
+                            //print("cup:" + cupX + "," + cupY);
 
                             if(xValue < cupX+cupRadius && xValue > cupX-cupRadius && yValue < cupY+cupRadius && yValue > cupY-cupRadius) {
                                 // animator.SetBool("animationTest", true);
                                 print(cups1[i]);
                                 playerTurn = false;
+                                print("score");
                                 // scoredIn = 10+i;
-                                animator.Play("cup1_1_explosion");
+                                // animator.Play("cup1_1_explosion");
 
                                 // empty cup from array
                                 cups1[i] = "";
 
                                 // send score to arduino
-                                data_stream.Write("s");
-                                data_stream.Write("o");
-                                print("sent to arduino");
+                                // data_stream.Write("s");
+                                // data_stream.Write("o");
+                                // print("sent to arduino");
+                                
                             }
                         }
                     }
-                    // print("noScore");
-                    // playerTurn = false;
+                    playerTurn = false;
+                    print("noScore");
+                }
+                if (Input.GetKeyDown(13)){
+                    playerTurn = true;
                 }
             } else {
                 for(int i = 0; i < 9; i++) {
@@ -89,15 +94,18 @@ public class checkScore : MonoBehaviour
                                 playerTurn = true;
 
                                 cups2[i] = "";
-                                
-                                data_stream.Write("s");
-                                data_stream.Write("o");
+
+                                // data_stream.Write("s");
+                                // data_stream.Write("o");
                             }
                         }
                         
                     }
                     // print("noScore");
-                    // playerTurn = true;
+                    playerTurn = true;
+                }
+                if (Input.GetKeyDown("space")){
+                    playerTurn = true;
                 }
             }
             xValue = 0;
@@ -130,8 +138,8 @@ public class checkScore : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        OpenArduino();
-        data_stream.Write("o");
+        // OpenArduino();
+        // data_stream.Write("o");
         // System.Timers.Timer myTimer = new System.Timers.Timer();
         // myTimer.Elapsed += new ElapsedEventHandler(DisplayTimeEvent);
         // myTimer.Interval = 1000; // 1000 ms is one second

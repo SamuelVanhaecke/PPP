@@ -28,7 +28,7 @@ void ofApp::setup(){
     
     // GUI
     gui.setup("panel");
-    gui.add(searchColor.set("color",ofColor(242, 157, 101),ofColor(0,0),ofColor(255,255)));
+    gui.add(searchColor.set("color",ofColor(255, 212, 124),ofColor(0,0),ofColor(255,255)));
     
 }
 
@@ -40,7 +40,7 @@ void ofApp::update(){
         contour.findContours(camera);
         
         if(contour.size()>0){
-//            std::cout << "value: " << contour.getAverage(0) << endl;
+            std::cout << "value: " << contour.getAverage(0) << endl;
             string message = ofToString(contour.getAverage(0));
             udpConnection.Send(message.c_str(),message.length());
         }
@@ -93,7 +93,8 @@ void ofApp::mouseDragged(int x, int y, int button){
 void ofApp::mousePressed(int x, int y, int button){
 //    colorSearch = static_cast<int>(camera.getPixels().getColor(x, y));
 //    color = camera.getPixels().getColor(x, y);
-//    std::cout << "value: " << camera.getPixels().getColor(x, y) << endl;
+
+    std::cout << "value: " << camera.getPixels().getColor(x, y) << endl;
 //    std::cout << "value: " << colorSearch << endl;
 }
 
