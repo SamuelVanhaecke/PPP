@@ -69,9 +69,6 @@ public class checkScore : MonoBehaviour
                     playerTurn = false;
                     print("noScore");
                 }
-                if (Input.GetKeyDown(13)){
-                    playerTurn = true;
-                }
             } else {
                 for(int i = 0; i < 9; i++) {
                     positionsX[i] = positionsX[i+1];
@@ -104,15 +101,25 @@ public class checkScore : MonoBehaviour
                     // print("noScore");
                     playerTurn = true;
                 }
-                if (Input.GetKeyDown("space")){
-                    playerTurn = true;
-                }
             }
             xValue = 0;
             yValue = 0;
         }
-
+        forceTurn();
         
+    }
+
+    public void forceTurn(){
+        if (Input.GetKeyDown(KeyCode.Return)){
+            print("pressed enter");
+            playerTurn = false;
+            print(playerTurn);
+        }
+        if (Input.GetKeyDown("space")){
+            print("pressed space");
+            playerTurn = true;
+            print(playerTurn);
+        }
     }
     public void OpenArduino(){
         if(data_stream != null){
