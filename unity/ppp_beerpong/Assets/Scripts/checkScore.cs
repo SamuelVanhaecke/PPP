@@ -14,6 +14,7 @@ public class checkScore : MonoBehaviour
 {
     SerialPort data_stream = new SerialPort("/dev/cu.usbmodemHIDPC1", 9600);
     public Animator animator;
+    public Animator animator2;
     public string[] cups1 = {"cup1.1", "cup1.2", "cup1.3", "cup1.4", "cup1.5", "cup1.6", "cup1.7", "cup1.8", "cup1.9", "cup1.10"};
     public string[] cups2 = {"cup2.1", "cup2.2", "cup2.3", "cup2.4", "cup2.5", "cup2.6", "cup2.7", "cup2.8", "cup2.9", "cup2.10"};
     public int xValue;
@@ -58,6 +59,11 @@ public class checkScore : MonoBehaviour
                                 // empty cup from array
                                 cups1[i] = "";
 
+                                animator.Play("score_1");
+                                animator2.Play("score_1");
+                                
+                                // animator.SetInteger("chosenAnimation", 0);
+
                                 // send score to arduino
                                 // data_stream.Write("s");
                                 // data_stream.Write("o");
@@ -66,8 +72,8 @@ public class checkScore : MonoBehaviour
                             }
                         }
                     }
-                    playerTurn = false;
-                    print("noScore");
+                    // playerTurn = false;
+                    // print("noScore");
                 }
             } else {
                 for(int i = 0; i < 9; i++) {
@@ -85,7 +91,6 @@ public class checkScore : MonoBehaviour
                             //print(cupX +", "+cupY);
                             //print(xValue +", "+yValue);
                             if(xValue < cupX+cupRadius && xValue > cupX-cupRadius && yValue < cupY+cupRadius && yValue > cupY-cupRadius) {
-                                // animator.SetBool("animationTest", true);
                                 print(cups2[i]);
                                 print("score");
                                 playerTurn = true;
@@ -99,7 +104,7 @@ public class checkScore : MonoBehaviour
                         
                     }
                     // print("noScore");
-                    playerTurn = true;
+                    // playerTurn = true;
                 }
             }
             xValue = 0;
@@ -139,9 +144,9 @@ public class checkScore : MonoBehaviour
         }
     }
 
-    public void positionCups(){
-        animator.Play("cup1_1");
-    }
+    // public void positionCups(){
+    //     animator.Play("cup1_1");
+    // }
     // Start is called before the first frame update
     void Start()
     {
