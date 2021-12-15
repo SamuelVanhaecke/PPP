@@ -16,8 +16,8 @@ public class loadGame : MonoBehaviour
     {
         if(Input.GetKeyDown("space")){
             SceneManager.LoadScene("2playergame");
-        } else if (Input.GetKeyDown("e")) {
-            SceneManager.LoadScene("4playergame");
+        } else if (Input.GetKeyDown(KeyCode.Return)) {
+            SceneManager.LoadScene("2playergame");
         }
     }
 }
