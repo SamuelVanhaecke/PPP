@@ -55,12 +55,9 @@ public class checkScore : MonoBehaviour
                                 print("score");
                                 // scoredIn = 10+i;
                                 // animator.Play("cup1_1_explosion");
-
+                                playScoreAnimation();
                                 // empty cup from array
                                 cups1[i] = "";
-
-                                animator.Play("score_1");
-                                animator2.Play("score_1");
                                 
                                 // animator.SetInteger("chosenAnimation", 0);
 
@@ -112,6 +109,13 @@ public class checkScore : MonoBehaviour
         }
         forceTurn();
         
+    }
+
+    public void playScoreAnimation(){
+        int animationNumber = UnityEngine.Random.Range(1, 1);
+        print(animationNumber);
+        animator.Play("score_"+animationNumber);
+        animator2.Play("score_"+animationNumber);
     }
 
     public void forceTurn(){
