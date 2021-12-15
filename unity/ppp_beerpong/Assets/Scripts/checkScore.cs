@@ -43,6 +43,7 @@ public class checkScore : MonoBehaviour
                         if(cups1[i]!=""){
                             //print("checking score");
                             string currentCup = GameObject.Find(cups1[i]).transform.position.ToString();
+                            
                             var cupCoördinates = currentCup.Split(',');
                             int cupX = Int32.Parse(Regex.Match(cupCoördinates[0], @"\d+").Value)-482;
                             int cupY = Int32.Parse(Regex.Match(cupCoördinates[1], @"\d+").Value)-275;
@@ -56,6 +57,9 @@ public class checkScore : MonoBehaviour
                                 // scoredIn = 10+i;
                                 // animator.Play("cup1_1_explosion");
                                 playScoreAnimation();
+
+                                print(cups1[i]);
+                                GameObject.Find(cups1[i]).GetComponent<SpriteRenderer>().color = new Color (255f, 255f, 255f, 0f);
                                 // empty cup from array
                                 cups1[i] = "";
                                 
