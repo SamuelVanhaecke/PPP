@@ -16,11 +16,11 @@ public class checkScore : MonoBehaviour
     SerialPort data_stream = new SerialPort("/dev/cu.usbmodemHIDPC1", 9600);
     public Animator animator;
     public Animator animator2;
-    public string[] cups1 = {"cup1.1", "cup1.2", "cup1.3", "cup1.4", "cup1.5", "cup1.6", "cup1.7", "cup1.8", "cup1.9", "cup1.10"};
-    public string[] cups2 = {"cup2.1", "cup2.2", "cup2.3", "cup2.4", "cup2.5", "cup2.6", "cup2.7", "cup2.8", "cup2.9", "cup2.10"};
-    public int xValue;
-    public int yValue;
-
+    private string[] cups1 = {"cup1.1", "cup1.2", "cup1.3", "cup1.4", "cup1.5", "cup1.6", "cup1.7", "cup1.8", "cup1.9", "cup1.10"};
+    private string[] cups2 = {"cup2.1", "cup2.2", "cup2.3", "cup2.4", "cup2.5", "cup2.6", "cup2.7", "cup2.8", "cup2.9", "cup2.10"};
+    private int xValue;
+    private int yValue;
+    public static bool minigame = false;
     private int player1Score = 0;
     private int player2Score = 0;
     public static int winner;
@@ -69,6 +69,9 @@ public class checkScore : MonoBehaviour
 
                                 player1Score++;
                                 print(player1Score);
+
+                                playMinigame();
+                                
                                 
                                 // animator.SetInteger("chosenAnimation", 0);
 
@@ -106,6 +109,8 @@ public class checkScore : MonoBehaviour
                                 cups2[i] = "";
                                 player2Score++;
 
+                                playMinigame();
+
                                 // data_stream.Write("s");
                                 // data_stream.Write("o");
                             }
@@ -121,6 +126,14 @@ public class checkScore : MonoBehaviour
         }
         forceTurn();
         
+    }
+
+    public void playMinigame() {
+        int random = UnityEngine.Random.Range(68, 70);
+        print(random);
+        if(random == 69){
+            minigame = true;
+        }
     }
 
     public void playScoreAnimation(){
