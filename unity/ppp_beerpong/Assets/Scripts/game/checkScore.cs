@@ -35,7 +35,7 @@ public class checkScore : MonoBehaviour
         xValue = GameObject.Find("Canvas").GetComponent<udpReceive>().xValue;
         yValue = GameObject.Find("Canvas").GetComponent<udpReceive>().yValue;
         
-        if(xValue != 0 && yValue != 0) {
+        if(xValue != 0 && yValue != 0 && !minigame) {
             if (playerTurn) {
                 for(int i = 0; i < 9; i++) {
                     positionsX[i] = positionsX[i+1];
@@ -143,16 +143,17 @@ public class checkScore : MonoBehaviour
     }
 
     public void forceTurn(){
-        if (Input.GetKeyDown(KeyCode.Return)){
-            print("pressed enter");
-            playerTurn = false;
-            print(playerTurn);
-        }
-        if (Input.GetKeyDown("space")){
-            print("pressed space");
-            player1Score++;
-            playerTurn = true;
-            print(playerTurn);
+        if(!minigame){
+            if (Input.GetKeyDown(KeyCode.Return)){
+                print("pressed enter");
+                playerTurn = false;
+                print(playerTurn);
+            }
+            if (Input.GetKeyDown("space")){
+                print("pressed space");
+                playerTurn = true;
+                print(playerTurn);
+            }
         }
     }
     public void OpenArduino(){
