@@ -9,6 +9,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using System.Text.RegularExpressions;
+using UnityEngine.SceneManagement;
 
 public class checkScore : MonoBehaviour
 {
@@ -20,10 +21,13 @@ public class checkScore : MonoBehaviour
     public int xValue;
     public int yValue;
 
+    private int player1Score = 0;
+    private int player2Score = 0;
+    public static int winner;
+
     private int cupRadius = 23;
 
     int [] positionsX = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
-    public int[] positionsY;
     public bool playerTurn = true;
 
     void checkIfScore() {
@@ -62,6 +66,9 @@ public class checkScore : MonoBehaviour
                                 GameObject.Find(cups1[i]).GetComponent<SpriteRenderer>().color = new Color (255f, 255f, 255f, 0f);
                                 // empty cup from array
                                 cups1[i] = "";
+
+                                player1Score++;
+                                print(player1Score);
                                 
                                 // animator.SetInteger("chosenAnimation", 0);
 
@@ -89,14 +96,15 @@ public class checkScore : MonoBehaviour
                             var cupCoördinates = currentCup.Split(',');
                             int cupX = Int32.Parse(Regex.Match(cupCoördinates[0], @"\d+").Value)-482;
                             int cupY = Int32.Parse(Regex.Match(cupCoördinates[1], @"\d+").Value)-275;
-                            //print(cupX +", "+cupY);
-                            //print(xValue +", "+yValue);
                             if(xValue < cupX+cupRadius && xValue > cupX-cupRadius && yValue < cupY+cupRadius && yValue > cupY-cupRadius) {
                                 print(cups2[i]);
                                 print("score");
                                 playerTurn = true;
 
+                                playScoreAnimation();
+
                                 cups2[i] = "";
+                                player2Score++;
 
                                 // data_stream.Write("s");
                                 // data_stream.Write("o");
@@ -117,7 +125,6 @@ public class checkScore : MonoBehaviour
 
     public void playScoreAnimation(){
         int animationNumber = UnityEngine.Random.Range(1, 1);
-        print(animationNumber);
         animator.Play("score_"+animationNumber);
         animator2.Play("score_"+animationNumber);
     }
@@ -130,6 +137,7 @@ public class checkScore : MonoBehaviour
         }
         if (Input.GetKeyDown("space")){
             print("pressed space");
+            player1Score++;
             playerTurn = true;
             print(playerTurn);
         }
@@ -204,7 +212,15 @@ public class checkScore : MonoBehaviour
         // if(xValue != 0 && yValue != 0) {
         //     checkIfScore();
         // }
-        checkIfScore();
+        if(player1Score < 10 && player2Score < 10){
+            checkIfScore();
+        }else if (player1Score == 10){
+            winner = 1;
+            SceneManager.LoadScene("Finished");
+        }else if (player2Score == 10){
+            winner = 2;
+            SceneManager.LoadScene("Finished");
+        }
         //checkIfScore(xValue, yValue)
     }
 }
