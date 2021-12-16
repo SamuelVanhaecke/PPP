@@ -8,9 +8,10 @@ public class minigame : MonoBehaviour
 {
     private float timeRemaining = 10;
     private int timerRounded;
-    private int minigameStage = 0;
+    private int minigameStage = 3;
     private bool checkButtons;
-    public Text stage;
+    public Text minigame1;
+    public Text minigame2;
     void startGame(){
         checkScore.minigame = false;
         print("suuu");
@@ -27,17 +28,14 @@ public class minigame : MonoBehaviour
         if(checkScore.minigame){
             // startGame();
             if (timeRemaining > 0){
-                stage.text = Convert.ToString(minigameStage);
-                // print(checkScore.minigame);
-                // print(timerRounded);
-                int randomTime = UnityEngine.Random.Range(timerRounded-50, timerRounded+50);
-                // print(randomTime);
+                minigame1.text = Convert.ToString(minigameStage);
+                minigame2.text = Convert.ToString(minigameStage);
+                int randomTime = UnityEngine.Random.Range(timerRounded-60, timerRounded+60);
                 if(randomTime == timerRounded){
-                    if(minigameStage == 3){
+                    if(minigameStage == 0){
                         checkButtons = true;
-                        
                     }else{
-                        minigameStage++;
+                        minigameStage--;
                     }
                     
                 }
@@ -49,14 +47,16 @@ public class minigame : MonoBehaviour
             // print(timeRemaining);
         }
         if(checkButtons){
-            stage.text = "press now!";
+            minigame1.text = "press now!";
+            minigame2.text = "press now!";
             if(Input.GetKeyDown(KeyCode.Return)){
-                stage.text = "player 1 wins";
+                minigame1.text = "VICTORY";
+                minigame2.text = "SHOT!";
                 checkScore.minigame = false;
                 checkButtons = false;
             }else if (Input.GetKeyDown("space")){
-                stage.text = "player 2 wins";
-                print("player2 wins minigame");
+                minigame2.text = "VICTORY";
+                minigame1.text = "SHOT!";
                 checkScore.minigame = false;
                 checkButtons = false;
             }
