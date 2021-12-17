@@ -6,11 +6,15 @@ using UnityEngine.UI;
 public class showWinner : MonoBehaviour
 {
     public Text text1;
+
+    public Text text2;
     public void checkWinner(){
         if(checkScore.winner == 1){
-            text1.text = "player 1 won";
+            text1.text = "VICTORY";
+            text2.text = "LOSER";
         }else{
-
+            text2.text = "VICTORY";
+            text1.text = "LOSER";
         }
     }
     // Start is called before the first frame update
