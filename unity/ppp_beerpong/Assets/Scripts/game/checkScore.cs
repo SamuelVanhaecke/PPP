@@ -129,9 +129,9 @@ public class checkScore : MonoBehaviour
     }
 
     public void playMinigame() {
-        int random = UnityEngine.Random.Range(68, 70);
+        int random = UnityEngine.Random.Range(1, 3);
         print(random);
-        if(random == 69){
+        if(random == 2){
             minigame = true;
         }
     }
