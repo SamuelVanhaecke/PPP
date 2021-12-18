@@ -13,6 +13,10 @@ using UnityEngine.SceneManagement;
 
 public class checkScore : MonoBehaviour
 {
+    AudioSource gameAudio;
+
+    public AudioClip clip1;
+    public AudioClip clip2;
     SerialPort data_stream = new SerialPort("/dev/cu.usbmodemHIDPC1", 9600);
     public Animator animator;
     public Animator animator2;
@@ -205,7 +209,8 @@ public class checkScore : MonoBehaviour
         // print(cups);
         // GameObject canvas = GameObject.Find("Canvas");
         // PlayerScript udpScript = canvas.GetComponent<udpReceive>();
-        
+        gameAudio = GameObject.Find("Canvas").GetComponent<AudioSource>();
+        gameAudio.PlayOneShot(clip2);
     }
 
     // Update is called once per frame
