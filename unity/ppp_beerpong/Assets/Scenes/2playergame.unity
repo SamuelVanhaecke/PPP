@@ -456,6 +456,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db7c7cb7e52e2414ca9b0841558f6cba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minigameSounds:
+  - {fileID: 8300000, guid: 8227e09f129af4032bbc1b1c4b3f8ae2, type: 3}
+  - {fileID: 8300000, guid: 3f44e109603d0406a81e9177aa7e3440, type: 3}
+  - {fileID: 8300000, guid: dfaf7544912f9455ea8384262597e7e8, type: 3}
+  - {fileID: 8300000, guid: a4c58c37809c64117954d684b5dd73ee, type: 3}
   minigame1: {fileID: 643982288}
   minigame2: {fileID: 1700958782}
 --- !u!114 &411844763

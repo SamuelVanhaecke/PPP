@@ -6,45 +6,53 @@ using UnityEngine.UI;
 
 public class minigame : MonoBehaviour
 {
-    private float gameTime = 10;
+    AudioSource gameAudio;
+    public AudioClip[] minigameSounds;
+    private float gameTime = 1;
     private float preparationTime = 10;
     private float finishTime = 10;
     private int timerRounded;
     private int minigameStage = 3;
+    private bool gameStage3 = true;
     private bool checkButtons;
     private bool finishminigame = false;
     public Text minigame1;
     public Text minigame2;
 
-    // Start is called before the first frame update
     void Start()
     {
-
+        gameAudio = GameObject.Find("Canvas").GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(checkScore.minigame && !finishminigame){
             minigame1.text = Convert.ToString("Get Ready");
             minigame2.text = Convert.ToString("Get Ready");
+            if(preparationTime >= 0){
+                print(preparationTime);
+            }
             if(preparationTime <= 0){
-                if (gameTime > 0){
-                    print(minigameStage);
+                print("preparation done");
+                print(gameTime);
+                if (gameTime <= 0){
+                    if(gameStage3){
+                        gameAudio.PlayOneShot(minigameSounds[minigameStage]);
+                        gameStage3 = false;
+                    }
                     minigame1.text = Convert.ToString(minigameStage);
                     minigame2.text = Convert.ToString(minigameStage);
-                    int randomTime = UnityEngine.Random.Range(timerRounded-60, timerRounded+60);
-                    if(randomTime == timerRounded){
+                    int randomNum = UnityEngine.Random.Range(0, 100);
+                    if(randomNum == 69){
                         if(minigameStage == 1){
                             checkButtons = true;
-                        }else{
-                            minigameStage--;
                         }
-                        
+                        minigameStage--;
+                        gameAudio.PlayOneShot(minigameSounds[minigameStage]);
+                        // gameTime = 1;
                     }
-                gameTime -= Time.deltaTime;
-                timerRounded = Convert.ToInt32(gameTime);
                 }
+                gameTime -= Time.deltaTime;
             }
             preparationTime -= Time.deltaTime;
         }

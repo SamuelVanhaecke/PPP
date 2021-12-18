@@ -13,7 +13,6 @@ using UnityEngine.SceneManagement;
 
 public class checkScore : MonoBehaviour
 {
-    AudioSource gameAudio;
     SerialPort data_stream = new SerialPort("/dev/cu.usbmodemHIDPC1", 9600);
     public Animator animator;
     public Animator animator2;
@@ -28,6 +27,7 @@ public class checkScore : MonoBehaviour
 
     private int cupRadius = 23;
 
+    AudioSource gameAudio;
     public AudioClip[] sounds;
 
     private int [] positionsX = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
