@@ -14,9 +14,6 @@ using UnityEngine.SceneManagement;
 public class checkScore : MonoBehaviour
 {
     AudioSource gameAudio;
-
-    public AudioClip clip1;
-    public AudioClip clip2;
     SerialPort data_stream = new SerialPort("/dev/cu.usbmodemHIDPC1", 9600);
     public Animator animator;
     public Animator animator2;
@@ -31,7 +28,9 @@ public class checkScore : MonoBehaviour
 
     private int cupRadius = 23;
 
-    int [] positionsX = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
+    public AudioClip[] sounds;
+
+    private int [] positionsX = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
     public bool playerTurn = true;
 
     void checkIfScore() {
@@ -210,7 +209,7 @@ public class checkScore : MonoBehaviour
         // GameObject canvas = GameObject.Find("Canvas");
         // PlayerScript udpScript = canvas.GetComponent<udpReceive>();
         gameAudio = GameObject.Find("Canvas").GetComponent<AudioSource>();
-        gameAudio.PlayOneShot(clip2);
+        gameAudio.PlayOneShot(sounds[UnityEngine.Random.Range(0, sounds.Length)]);
     }
 
     // Update is called once per frame

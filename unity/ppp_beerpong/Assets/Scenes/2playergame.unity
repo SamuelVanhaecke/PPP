@@ -582,10 +582,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebf955648b5fa400784f7e27bfd9702d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clip1: {fileID: 8300000, guid: a4296aa00fdab43a58f2870959bea64c, type: 3}
-  clip2: {fileID: 8300000, guid: 0917421162a4a4bfa90646a0d5f97c34, type: 3}
   animator: {fileID: 377054502}
   animator2: {fileID: 1901894171}
+  sounds:
+  - {fileID: 8300000, guid: a4296aa00fdab43a58f2870959bea64c, type: 3}
+  - {fileID: 8300000, guid: 0917421162a4a4bfa90646a0d5f97c34, type: 3}
   playerTurn: 1
 --- !u!114 &411844770
 MonoBehaviour:
