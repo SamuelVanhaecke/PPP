@@ -10,8 +10,8 @@ public class minigame : MonoBehaviour
     public AudioClip[] minigameSounds;
     private float gameTime = 1;
     private float preparationTime = 10;
-    private float finishTime = 10;
-    private int timerRounded;
+    private float finishTime = 5;
+    private bool countdown = true;
     private int minigameStage = 3;
     private bool gameStage3 = true;
     private bool checkButtons;
@@ -34,7 +34,6 @@ public class minigame : MonoBehaviour
             }
             if(preparationTime <= 0){
                 print("preparation done");
-                print(gameTime);
                 if (gameTime <= 0){
                     if(gameStage3){
                         gameAudio.PlayOneShot(minigameSounds[minigameStage]);
@@ -45,6 +44,7 @@ public class minigame : MonoBehaviour
                     int randomNum = UnityEngine.Random.Range(0, 100);
                     if(randomNum == 69){
                         if(minigameStage == 1){
+                            countdown = false;
                             checkButtons = true;
                         }
                         minigameStage--;
@@ -71,6 +71,8 @@ public class minigame : MonoBehaviour
         }
         if(finishminigame){
             checkButtons = false;
+            minigameStage = 3;
+            countdown = true;
             if(finishTime <= 0){
                 minigame1.text = "";
                 minigame2.text = "";
@@ -78,7 +80,7 @@ public class minigame : MonoBehaviour
                 print("continue beerpong");
 
                 finishminigame = false;
-                finishTime = 10;
+                finishTime = 5;
                 preparationTime = 10;
                 gameTime = 10;
             }else{

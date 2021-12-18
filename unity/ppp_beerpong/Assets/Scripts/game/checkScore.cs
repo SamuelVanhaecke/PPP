@@ -105,6 +105,7 @@ public class checkScore : MonoBehaviour
                             if(xValue < cupX+cupRadius && xValue > cupX-cupRadius && yValue < cupY+cupRadius && yValue > cupY-cupRadius) {
                                 print(cups2[i]);
                                 print("score");
+                                GameObject.Find(cups2[i]).GetComponent<SpriteRenderer>().color = new Color (255f, 255f, 255f, 0f);
                                 playerTurn = true;
 
                                 playScoreAnimation();
