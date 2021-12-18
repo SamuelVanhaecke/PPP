@@ -140,6 +140,7 @@ public class checkScore : MonoBehaviour
     }
 
     public void playScoreAnimation(){
+        gameAudio.PlayOneShot(sounds[UnityEngine.Random.Range(0, sounds.Length)]);
         int animationNumber = UnityEngine.Random.Range(1, 1);
         animator.Play("score_"+animationNumber);
         animator2.Play("score_"+animationNumber);
@@ -209,7 +210,6 @@ public class checkScore : MonoBehaviour
         // GameObject canvas = GameObject.Find("Canvas");
         // PlayerScript udpScript = canvas.GetComponent<udpReceive>();
         gameAudio = GameObject.Find("Canvas").GetComponent<AudioSource>();
-        gameAudio.PlayOneShot(sounds[UnityEngine.Random.Range(0, sounds.Length)]);
     }
 
     // Update is called once per frame
