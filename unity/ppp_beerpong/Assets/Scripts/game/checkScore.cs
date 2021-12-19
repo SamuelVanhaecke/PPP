@@ -133,7 +133,7 @@ public class checkScore : MonoBehaviour
     }
 
     public void playMinigame() {
-        int random = UnityEngine.Random.Range(1, 3);
+        int random = UnityEngine.Random.Range(1, 50);
         print(random);
         if(random == 2){
             minigame = true;
@@ -142,7 +142,8 @@ public class checkScore : MonoBehaviour
 
     public void playScoreAnimation(){
         gameAudio.PlayOneShot(sounds[UnityEngine.Random.Range(0, sounds.Length)]);
-        int animationNumber = UnityEngine.Random.Range(1, 1);
+        int animationNumber = UnityEngine.Random.Range(1, 3);
+        print(animationNumber);
         animator.Play("score_"+animationNumber);
         animator2.Play("score_"+animationNumber);
     }
