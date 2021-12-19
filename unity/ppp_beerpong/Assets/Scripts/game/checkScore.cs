@@ -20,6 +20,9 @@ public class checkScore : MonoBehaviour
     private string[] cups2 = {"cup2.1", "cup2.2", "cup2.3", "cup2.4", "cup2.5", "cup2.6", "cup2.7", "cup2.8", "cup2.9", "cup2.10"};
     private int xValue;
     private int yValue;
+
+    public Text turnIndicator1;
+    public Text turnIndicator2;
     public static bool minigame = false;
     private int player1Score = 0;
     private int player2Score = 0;
@@ -240,6 +243,14 @@ public class checkScore : MonoBehaviour
         }else if (player2Score == 10){
             winner = 2;
             SceneManager.LoadScene("Finished");
+        }
+
+        if(playerTurn){
+            turnIndicator1.text = "Your Turn";
+            turnIndicator2.text = "";
+        }else{
+            turnIndicator2.text = "Your Turn";
+            turnIndicator1.text = "";
         }
         //checkIfScore(xValue, yValue)
     }
