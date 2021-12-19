@@ -142,7 +142,7 @@ public class checkScore : MonoBehaviour
 
     public void playScoreAnimation(){
         gameAudio.PlayOneShot(sounds[UnityEngine.Random.Range(0, sounds.Length)]);
-        int animationNumber = UnityEngine.Random.Range(1, 3);
+        int animationNumber = UnityEngine.Random.Range(1, 4);
         print(animationNumber);
         animator.Play("score_"+animationNumber);
         animator2.Play("score_"+animationNumber);
