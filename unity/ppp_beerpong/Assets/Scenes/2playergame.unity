@@ -592,6 +592,8 @@ MonoBehaviour:
   sounds:
   - {fileID: 8300000, guid: a4296aa00fdab43a58f2870959bea64c, type: 3}
   - {fileID: 8300000, guid: 0917421162a4a4bfa90646a0d5f97c34, type: 3}
+  - {fileID: 8300000, guid: e7282330a147b4ceda3d06223c42b893, type: 3}
+  - {fileID: 8300000, guid: 3585e9a8e833d46738ca41c90fca8428, type: 3}
   playerTurn: 1
 --- !u!114 &411844770
 MonoBehaviour:
