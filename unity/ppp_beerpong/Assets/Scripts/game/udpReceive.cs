@@ -15,13 +15,13 @@ public class udpReceive : MonoBehaviour
     Thread receiveThread;
  
     // udpclient object
-    UdpClient client;
+    public static UdpClient client;
 
     // public
     // public string IP = "127.0.0.1"; default local
     public int port; // define > init
 
-    public Text scoring;
+    // private bool clientExists;
  
     // infos
     public string lastReceivedUDPPacket="";
@@ -66,12 +66,13 @@ public class udpReceive : MonoBehaviour
     // init
     private void init()
     {
+        clientExists = false;
         // Endpunkt definieren, von dem die Nachrichten gesendet werden.
         print("UDPSend.init()");
        
         // define port
         port = 11999;
- 
+
         // status
         print("Sending to 127.0.0.1 : "+port);
         print("Test-Sending to this Port: nc -u 127.0.0.1  "+port+"");
@@ -92,8 +93,13 @@ public class udpReceive : MonoBehaviour
     // receive thread
     private  void ReceiveData()
     {
- 
+        // if(!clientExists){
+            
+        //     clientExists = true;
+        // }
+
         client = new UdpClient(port);
+
         while (true)
         {
  
@@ -140,5 +146,10 @@ public class udpReceive : MonoBehaviour
             xValue = Int32.Parse(Regex.Match(result[0], @"\d+").Value)-640;
             yValue = Int32.Parse(Regex.Match(result[1], @"\d+").Value)-360;
         };
+
+        // if(checkScore.winner == 1 || checkScore.winner == 2){
+        //     print("doing it");
+        //     client.Close();
+        // }
     }
 }

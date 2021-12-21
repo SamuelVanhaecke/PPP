@@ -26,7 +26,7 @@ public class checkScore : MonoBehaviour
     public static bool minigame = false;
     private int player1Score = 0;
     private int player2Score = 0;
-    public static int winner;
+    public static int winner = 0;
 
     private int cupRadius = 23;
 
@@ -155,6 +155,9 @@ public class checkScore : MonoBehaviour
                 print(playerTurn);
             }
             if (Input.GetKeyDown("space")){
+                // winner = 1;
+                // udpReceive.client.Close();
+                // SceneManager.LoadScene("Finished");
                 print("pressed space");
                 playerTurn = true;
                 print(playerTurn);

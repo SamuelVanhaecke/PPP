@@ -15,8 +15,10 @@ public class loadGame : MonoBehaviour
     void Update()
     {
         if(Input.GetKeyDown("space")){
+            // checkScore.winner = 0;
             SceneManager.LoadScene("2playergame");
         } else if (Input.GetKeyDown(KeyCode.Return)) {
+            // checkScore.winner = 0;
             SceneManager.LoadScene("2playergame");
         }
     }
