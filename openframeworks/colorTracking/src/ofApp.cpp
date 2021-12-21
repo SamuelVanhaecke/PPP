@@ -3,7 +3,7 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     // Camera setup
-    camera.setDeviceID(1);
+    camera.setDeviceID(0);
     camera.setup(1280, 720);
     
 //    colorSearch = {242, 157, 101, 255};

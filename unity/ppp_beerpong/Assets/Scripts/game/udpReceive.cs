@@ -66,7 +66,7 @@ public class udpReceive : MonoBehaviour
     // init
     private void init()
     {
-        clientExists = false;
+        // clientExists = false;
         // Endpunkt definieren, von dem die Nachrichten gesendet werden.
         print("UDPSend.init()");
        
