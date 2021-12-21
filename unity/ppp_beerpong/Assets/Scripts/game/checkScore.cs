@@ -53,7 +53,6 @@ public class checkScore : MonoBehaviour
                 if(positionsX[9] - positionsX[0] < 20) {
                     for(int i = 0; i < cups1.Length; i++) {
                         if(cups1[i]!=""){
-                            //print("checking score");
                             string currentCup = GameObject.Find(cups1[i]).transform.position.ToString();
                             
                             var cupCoördinates = currentCup.Split(',');
@@ -62,16 +61,14 @@ public class checkScore : MonoBehaviour
                             // print("cup:" + cupX + "," + cupY);
 
                             if(xValue < cupX+cupRadius && xValue > cupX-cupRadius && yValue < cupY+cupRadius && yValue > cupY-cupRadius) {
-                                // animator.SetBool("animationTest", true);
                                 print(cups1[i]);
                                 playerTurn = false;
                                 print("score");
-                                // scoredIn = 10+i;
-                                // animator.Play("cup1_1_explosion");
                                 playScoreAnimation();
 
                                 print(cups1[i]);
                                 GameObject.Find(cups1[i]).GetComponent<SpriteRenderer>().color = new Color (255f, 255f, 255f, 0f);
+
                                 // empty cup from array
                                 cups1[i] = "";
 
@@ -79,9 +76,6 @@ public class checkScore : MonoBehaviour
                                 print(player1Score);
 
                                 playMinigame();
-                                
-                                
-                                // animator.SetInteger("chosenAnimation", 0);
 
                                 // send score to arduino
                                 // data_stream.Write("s");
@@ -138,7 +132,7 @@ public class checkScore : MonoBehaviour
     }
 
     public void playMinigame() {
-        int random = UnityEngine.Random.Range(1, 50);
+        int random = UnityEngine.Random.Range(1, 20);
         print(random);
         if(random == 1){
             minigame = true;
@@ -167,6 +161,8 @@ public class checkScore : MonoBehaviour
             }
         }
     }
+
+    // Connection to Arduino can be used for lighting effects
     public void OpenArduino(){
         if(data_stream != null){
             if(data_stream.IsOpen){
@@ -185,58 +181,18 @@ public class checkScore : MonoBehaviour
         }
     }
 
-    // public void positionCups(){
-    //     animator.Play("cup1_1");
-    // }
     // Start is called before the first frame update
     void Start()
     {
         // OpenArduino();
         // data_stream.Write("o");
-        // System.Timers.Timer myTimer = new System.Timers.Timer();
-        // myTimer.Elapsed += new ElapsedEventHandler(DisplayTimeEvent);
-        // myTimer.Interval = 1000; // 1000 ms is one second
-        // myTimer.Start();
 
-        // void DisplayTimeEvent(object source, ElapsedEventArgs e)
-        // {
-        //     checkIfScore();
-        // }
-        // Task.Factory.StartNew(() =>
-        // {
-        //     System.Threading.Thread.Sleep(1000);
-        //     checkIfScore();
-        // });
-        // var cups = new List<Cup>();
-
-        // for(int i = 0; i<10; i++) {
-        //     cups.Add(new Cup{name = "side1."+i});
-        // }
-
-        // print(cups);
-        // GameObject canvas = GameObject.Find("Canvas");
-        // PlayerScript udpScript = canvas.GetComponent<udpReceive>();
         gameAudio = GameObject.Find("Canvas").GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // checkIfScore();
-        // xValue = GameObject.Find("Canvas").GetComponent<udpReceive>().xValue;
-        // yValue = GameObject.Find("Canvas").GetComponent<udpReceive>().yValue;
-
-        // Console.Write("["+xValue+","+yValue+"]");
-
-        //print("["+xValue+","+yValue+"]");
-
-        // if (xValue < 374+47 && xValue > 374-47 && yValue < 0+47 && yValue > 0-47) {
-        //     print("Score");
-        // }
-
-        // if(xValue != 0 && yValue != 0) {
-        //     checkIfScore();
-        // }
         if(player1Score < 10 && player2Score < 10){
             checkIfScore();
         }else if (player1Score == 10){
@@ -254,6 +210,5 @@ public class checkScore : MonoBehaviour
             turnIndicator1.text = "Your Turn";
             turnIndicator2.text = "";
         }
-        //checkIfScore(xValue, yValue)
     }
 }
