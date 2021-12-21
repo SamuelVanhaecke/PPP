@@ -17,7 +17,7 @@ public class arduinoConnection : MonoBehaviour
         // receivedButtonPress = data_stream.ReadLine();
         
         // if (Input.GetKeyDown("space")) {
-        //     print("brunzyn");
+        //     print("buttonTest");
             
         // }
     }
