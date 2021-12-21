@@ -140,24 +140,5 @@ public class udpReceive : MonoBehaviour
             xValue = Int32.Parse(Regex.Match(result[0], @"\d+").Value)-640;
             yValue = Int32.Parse(Regex.Match(result[1], @"\d+").Value)-360;
         };
-
-        
-
-        // Console.Write(xValue.ToString());
-
-        // if (yValue > 160 || yValue < -160) {
-        //     xValue = 0;
-        //     yValue = 0;
-        // }
-
-        //print(">> [" + xValue + "," + yValue + "]");
-
-
-
-        // if(xValue < 320 && xValue > 300){
-        //     scoring.text = "Score";
-        // } else {
-        //     scoring.text = "No score";
-        // }
     }
 }
