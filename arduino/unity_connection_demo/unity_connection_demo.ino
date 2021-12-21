@@ -15,9 +15,12 @@ void setup() {
 }
 
 void loop() {
+  // Unity -> Arduino
+  
   //buttonState = digitalRead(BUTTON_PIN);
   //Serial.println(buttonState);
 
+  // Arduino -> Unity
   if (digitalRead(BUTTON_PIN) == HIGH) {
     Keyboard.press(' ');
     delay(100);   

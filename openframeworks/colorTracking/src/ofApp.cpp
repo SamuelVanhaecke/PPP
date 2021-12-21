@@ -3,7 +3,7 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     // Camera setup
-    camera.setDeviceID(0);
+    camera.setDeviceID(1);
     camera.setup(1280, 720);
     
 //    colorSearch = {242, 157, 101, 255};
@@ -28,7 +28,7 @@ void ofApp::setup(){
     
     // GUI
     gui.setup("panel");
-    gui.add(searchColor.set("color",ofColor(255, 212, 124),ofColor(0,0),ofColor(255,255)));
+    gui.add(searchColor.set("color",ofColor(255, 189, 126),ofColor(0,0),ofColor(255,255)));
     
 }
 

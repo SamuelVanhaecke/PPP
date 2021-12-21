@@ -39,7 +39,9 @@ public class checkScore : MonoBehaviour
     void checkIfScore() {
         // Get coördinates of pingpongball from udpReceive script
         xValue = GameObject.Find("Canvas").GetComponent<udpReceive>().xValue;
-        yValue = GameObject.Find("Canvas").GetComponent<udpReceive>().yValue;
+        yValue = -(GameObject.Find("Canvas").GetComponent<udpReceive>().yValue);
+
+
         
         if(xValue != 0 && yValue != 0 && !minigame) {
             if (playerTurn) {
@@ -57,7 +59,7 @@ public class checkScore : MonoBehaviour
                             var cupCoördinates = currentCup.Split(',');
                             int cupX = Int32.Parse(Regex.Match(cupCoördinates[0], @"\d+").Value)-482;
                             int cupY = Int32.Parse(Regex.Match(cupCoördinates[1], @"\d+").Value)-275;
-                            //print("cup:" + cupX + "," + cupY);
+                            // print("cup:" + cupX + "," + cupY);
 
                             if(xValue < cupX+cupRadius && xValue > cupX-cupRadius && yValue < cupY+cupRadius && yValue > cupY-cupRadius) {
                                 // animator.SetBool("animationTest", true);
@@ -103,7 +105,7 @@ public class checkScore : MonoBehaviour
                         if(cups2[i]!=""){
                             string currentCup = GameObject.Find(cups2[i]).transform.position.ToString();
                             var cupCoördinates = currentCup.Split(',');
-                            int cupX = Int32.Parse(Regex.Match(cupCoördinates[0], @"\d+").Value)-482;
+                            int cupX = Int32.Parse(Regex.Match(cupCoördinates[0], @"\d+").Value)-492;
                             int cupY = Int32.Parse(Regex.Match(cupCoördinates[1], @"\d+").Value)-275;
                             if(xValue < cupX+cupRadius && xValue > cupX-cupRadius && yValue < cupY+cupRadius && yValue > cupY-cupRadius) {
                                 print(cups2[i]);
@@ -138,7 +140,7 @@ public class checkScore : MonoBehaviour
     public void playMinigame() {
         int random = UnityEngine.Random.Range(1, 50);
         print(random);
-        if(random == 2){
+        if(random == 1){
             minigame = true;
         }
     }
@@ -246,11 +248,11 @@ public class checkScore : MonoBehaviour
         }
 
         if(playerTurn){
-            turnIndicator1.text = "Your Turn";
-            turnIndicator2.text = "";
-        }else{
             turnIndicator2.text = "Your Turn";
             turnIndicator1.text = "";
+        }else{
+            turnIndicator1.text = "Your Turn";
+            turnIndicator2.text = "";
         }
         //checkIfScore(xValue, yValue)
     }

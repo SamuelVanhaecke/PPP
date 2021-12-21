@@ -2,7 +2,7 @@
 #include <Keyboard.h>
 
 #define BUTTON_1 9
-#define BUTTON_2 7                
+#define BUTTON_2 7                                                          
 
 void setup() {
   pinMode(BUTTON_1, INPUT_PULLUP);
