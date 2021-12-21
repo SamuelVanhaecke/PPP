@@ -49,7 +49,6 @@ public class minigame : MonoBehaviour
                         }
                         minigameStage--;
                         gameAudio.PlayOneShot(minigameSounds[minigameStage]);
-                        // gameTime = 1;
                     }
                 }
                 gameTime -= Time.deltaTime;
@@ -87,8 +86,5 @@ public class minigame : MonoBehaviour
                 finishTime -= Time.deltaTime;
             }
         }
-        // if (checkScore.minigame){
-        //     startminigame = true;
-        // }
     }
 }
