@@ -21,20 +21,23 @@ public class checkScore : MonoBehaviour
     private int xValue;
     private int yValue;
 
+    private float cupsTime = 4;
+
     public Text turnIndicator1;
     public Text turnIndicator2;
+
+    public Text user1;
+    public Text user2;
     public static bool minigame = false;
     private int player1Score = 0;
     private int player2Score = 0;
     public static int winner = 0;
-
+    private bool cupsReady = false;
     private int cupRadius = 23;
-
     AudioSource gameAudio;
     public AudioClip[] sounds;
-
     private int [] positionsX = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
-    public bool playerTurn = true;
+    public bool playerTurn;
 
     void checkIfScore() {
         // Get coördinates of pingpongball from udpReceive script
@@ -43,7 +46,7 @@ public class checkScore : MonoBehaviour
 
 
         
-        if(xValue != 0 && yValue != 0 && !minigame) {
+        if(xValue != 0 && yValue != 0 && !minigame && cupsReady) {
             if (playerTurn) {
                 for(int i = 0; i < 9; i++) {
                     positionsX[i] = positionsX[i+1];
@@ -184,18 +187,35 @@ public class checkScore : MonoBehaviour
         }
     }
 
+    public void checkCupsReady(){
+        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("space")){
+                user1.text = "";
+                user2.text = "";
+                playerTurn = true;
+                cupsReady = true;
+            }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         // OpenArduino();
         // data_stream.Write("o");
-
         gameAudio = GameObject.Find("Canvas").GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(!cupsReady){
+            if(cupsTime <= 0){
+                user1.text = "Press button when cups are set";
+                user2.text = "Press button when cups are set";
+                checkCupsReady();
+            }else{
+                cupsTime -= Time.deltaTime;
+            }
+        }
         if(player1Score < 10 && player2Score < 10){
             checkIfScore();
         }else if (player1Score == 10){
