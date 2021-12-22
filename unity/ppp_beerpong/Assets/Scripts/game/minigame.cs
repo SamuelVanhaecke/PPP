@@ -11,7 +11,6 @@ public class minigame : MonoBehaviour
     private float gameTime = 1;
     private float preparationTime = 10;
     private float finishTime = 5;
-    // private bool countdown = true;
     private int minigameStage = 3;
     private bool gameStage3 = true;
     private bool checkButtons;
@@ -44,7 +43,6 @@ public class minigame : MonoBehaviour
                     int randomNum = UnityEngine.Random.Range(0, 100);
                     if(randomNum == 69){
                         if(minigameStage == 1){
-                            // countdown = false;
                             checkButtons = true;
                         }
                         minigameStage--;
@@ -71,7 +69,6 @@ public class minigame : MonoBehaviour
         if(finishminigame){
             checkButtons = false;
             minigameStage = 3;
-            // countdown = true;
             if(finishTime <= 0){
                 minigame1.text = "";
                 minigame2.text = "";
@@ -86,8 +83,5 @@ public class minigame : MonoBehaviour
                 finishTime -= Time.deltaTime;
             }
         }
-        // if (checkScore.minigame){
-        //     startminigame = true;
-        // }
     }
 }

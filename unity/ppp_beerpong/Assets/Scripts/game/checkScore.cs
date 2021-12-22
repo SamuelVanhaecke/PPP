@@ -88,8 +88,6 @@ public class checkScore : MonoBehaviour
                             }
                         }
                     }
-                    // playerTurn = false;
-                    // print("noScore");
                 }
             } else {
                 for(int i = 0; i < 9; i++) {
@@ -116,15 +114,10 @@ public class checkScore : MonoBehaviour
                                 player2Score++;
 
                                 playMinigame();
-
-                                // data_stream.Write("s");
-                                // data_stream.Write("o");
                             }
                         }
                         
                     }
-                    // print("noScore");
-                    // playerTurn = true;
                 }
             }
             xValue = 0;
@@ -158,9 +151,6 @@ public class checkScore : MonoBehaviour
                 print(playerTurn);
             }
             if (Input.GetKeyDown("space")){
-                // winner = 1;
-                // udpReceive.client.Close();
-                // SceneManager.LoadScene("Finished");
                 print("pressed space");
                 playerTurn = true;
                 print(playerTurn);
@@ -199,8 +189,11 @@ public class checkScore : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Unity -> Arduino
         // OpenArduino();
         // data_stream.Write("o");
+
+        //load audiosource
         gameAudio = GameObject.Find("Canvas").GetComponent<AudioSource>();
     }
 
