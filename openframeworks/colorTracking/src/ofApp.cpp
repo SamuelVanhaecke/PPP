@@ -3,7 +3,9 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     // Camera setup
-    camera.setDeviceID(0);
+    
+    // set device to 0 to test with internal webcam
+    camera.setDeviceID(1);
     camera.setup(1280, 720);
     
 //    colorSearch = {242, 157, 101, 255};

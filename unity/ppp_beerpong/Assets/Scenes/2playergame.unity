@@ -601,6 +601,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0917421162a4a4bfa90646a0d5f97c34, type: 3}
   - {fileID: 8300000, guid: e7282330a147b4ceda3d06223c42b893, type: 3}
   - {fileID: 8300000, guid: 3585e9a8e833d46738ca41c90fca8428, type: 3}
+  - {fileID: 8300000, guid: 335dc6be4235048c4a402f89ebf8a709, type: 3}
+  - {fileID: 8300000, guid: 5f1139b9426154f49afc587fb1708b7a, type: 3}
   playerTurn: 1
 --- !u!114 &411844770
 MonoBehaviour:
